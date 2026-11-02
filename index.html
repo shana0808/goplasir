@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>10th Standard Results</title>
+
+    <style>
+        /* Page Background */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a, #2563eb, #7c3aed);
+        }
+
+        /* Main Card */
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            padding: 45px 35px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: appear 0.8s ease;
+        }
+
+        /* Graduation Icon */
+        .icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        /* Heading */
+        h1 {
+            color: #1e3a8a;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Form Label */
+        label {
+            display: block;
+            text-align: left;
+            color: #334155;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Input Field */
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 22px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Error Message */
+        .error {
+            color: #b91c1c;
+            background: #fee2e2;
+            padding: 12px;
+            margin-top: 18px;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 28px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* Animation */
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 35px 22px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="icon">🎓</div>
+
+        <h1>10th Standard Results</h1>
+
+        <p class="subtitle">
+            Welcome to the Student Result Portal.<br>
+            Enter your register number to view your results.
+        </p>
+
+        <form method="POST">
+
+            <label for="regno">Register Number</label>
+
+            <input
+                type="number"
+                id="regno"
+                name="regno"
+                placeholder="Enter your register number"
+                required
+                min="1"
+            >
+
+            <button type="submit">View My Result →</button>
+
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <div class="footer">
+            © 2026 Student Result Portal
+        </div>
+
+    </div>
+
+</body>
+</html>

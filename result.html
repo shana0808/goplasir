@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Mark Sheet</title>
+
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            padding: 35px 15px;
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Mark Sheet Card */
+        .marksheet {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(30, 41, 59, 0.18);
+            animation: slideIn 0.7s ease;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .header .icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #e0e7ff;
+        }
+
+        /* Student Details */
+        .details {
+            padding: 25px 30px 10px;
+        }
+
+        .details p {
+            font-size: 16px;
+            color: #334155;
+            margin-bottom: 14px;
+        }
+
+        .details strong {
+            color: #1e3a8a;
+        }
+
+        /* Section Heading */
+        .section-title {
+            padding: 10px 30px 15px;
+            color: #1e3a8a;
+            font-size: 19px;
+        }
+
+        /* Marks Table */
+        table {
+            width: calc(100% - 60px);
+            margin: 0 30px 25px;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        td {
+            padding: 14px 15px;
+            color: #334155;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 15px;
+        }
+
+        td:last-child,
+        th:last-child {
+            text-align: center;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f1f5f9;
+        }
+
+        tbody tr:hover {
+            background: #dbeafe;
+            transition: 0.2s;
+        }
+
+        /* Result Summary */
+        .summary {
+            margin: 0 30px 25px;
+            padding: 22px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+        }
+
+        .summary h3 {
+            font-size: 17px;
+            color: #334155;
+            margin-bottom: 14px;
+        }
+
+        .summary span {
+            color: #1d4ed8;
+            font-weight: bold;
+        }
+
+        .summary .result {
+            margin-bottom: 0;
+        }
+
+        /* Back Button */
+        .actions {
+            text-align: center;
+            padding: 0 30px 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 13px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .details {
+                padding: 22px 20px 10px;
+            }
+
+            .section-title {
+                padding: 10px 20px 15px;
+            }
+
+            table {
+                width: calc(100% - 40px);
+                margin: 0 20px 22px;
+            }
+
+            th, td {
+                padding: 12px 9px;
+                font-size: 13px;
+            }
+
+            .summary {
+                margin: 0 20px 22px;
+                padding: 18px;
+            }
+
+            .actions {
+                padding: 0 20px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="marksheet">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="icon">🎓</div>
+            <h1>10th Standard Mark Sheet</h1>
+            <p>Student Academic Performance Report</p>
+        </div>
+
+        <!-- Student Information -->
+        <div class="details">
+            <p><strong>Register Number:</strong> {{ student.regno }}</p>
+            <p><strong>Student Name:</strong> {{ student.name }}</p>
+        </div>
+
+        <!-- Marks Table -->
+        <h2 class="section-title">📚 Subject-wise Marks</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks ( / 100 )</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Tamil</td>
+                    <td>{{ student.tamil }}</td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>{{ student.english }}</td>
+                </tr>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>{{ student.maths }}</td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>{{ student.science }}</td>
+                </tr>
+                <tr>
+                    <td>Social Science</td>
+                    <td>{{ student.social }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Result Summary -->
+        <div class="summary">
+            <h3>Total Marks: <span>{{ total }} / 500</span></h3>
+
+            <h3>Percentage:
+                <span>{{ "%.2f"|format(percentage) }}%</span>
+            </h3>
+
+            <h3 class="result">Result:
+                <span>{{ status }}</span>
+            </h3>
+        </div>
+
+        <!-- Back Button -->
+        <div class="actions">
+            <a href="/" class="back-btn">← Back to Search</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            © 2026 Student Result Portal | All Rights Reserved
+        </div>
+
+    </div>
+
+</body>
+</html>
